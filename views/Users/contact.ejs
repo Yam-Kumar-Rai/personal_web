@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact</title>
+  <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body>
+  <!-- NAVIGATION BAR -->
+  <header class="navbar">
+    <div class="logo">My Portfolio</div>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/skill">Skills</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="/contact" class="active">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="container">
+    <h2>Get In Touch</h2>
+    <p class="intro">
+      I'm always open to new opportunities and collaborations.<br/>
+      Whether you have a question or just want to say hi, feel free to reach out!
+    </p>
+
+    <!-- CONTACT SECTION WITH GRID LAYOUT -->
+    <section class="contact-grid">
+      <!-- CONTACT FORM CARD -->
+      <div class="form-card">
+        <h3>Send Me a Message</h3>
+        <form id="contact-form" method="POST" action="/contact">
+          <label for="name">Your Name</label>
+          <input type="text" name="name" id="name" placeholder="Enter your name" required />
+
+          <label for="email">Email Address</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email" required />
+
+          <label for="subject">Subject</label>
+          <input type="text" name="subject" id="subject" placeholder="Subject" />
+
+          <label for="message">Message</label>
+          <textarea name="message" id="message" placeholder="Type your message..." required></textarea>
+
+          <button type="submit">Send Message</button>
+          <div class="typing-popup" id="typing-popup">Typing...</div>
+        </form>
+      </div>
+
+      <!-- CONTACT INFORMATION CARD -->
+      <div class="info-cards">
+        <div class="info-card">
+          <h3>Contact Information</h3>
+          <p><strong>Email</strong><br/> 07230089.sherubtse@rub.edu.bt</p>
+          <p><strong>Location</strong><br/> Thimphu, Bhutan</p>
+        </div>
+
+        <!-- SOCIAL LINKS ICONS -->
+        <div class="social-icons">
+          <a href="https://www.linkedin.com" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://www.facebook.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook" />
+          </a>
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PAGE FOOTER -->
+  <footer class="footer">
+    Designed & Built by Yam Kumar Rai
+  </footer>
+
+  <script>
+    // Form typing effect
+    const textarea = document.getElementById('message');
+    const popup = document.getElementById('typing-popup');
+
+    textarea?.addEventListener('input', () => {
+      popup.style.display = textarea.value.trim() ? 'block' : 'none';
+    });
+
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+  document.querySelector('.nav-links').classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.querySelector('.nav-links');
+  const toggle = document.querySelector('.menu-toggle');
+  if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+    menu.classList.remove('active');
+  }
+});  </script>
+</body>
+</html>

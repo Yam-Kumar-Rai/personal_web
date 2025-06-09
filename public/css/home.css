@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1f2b3a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Sticky Header */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #0e1c2f;
+    z-index: 999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0ef;
+    margin-left: 3rem;
+}
+
+nav {
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #0ef;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background-color: #0ef;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.image-glow {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00fff7, #b400ff);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse-glow 2.5s ease-in-out infinite;
+    box-shadow: 0 0 20px #0ef, 0 0 40px rgba(0, 255, 255, 0.3);
+    margin-bottom: 2rem;
+}
+
+.glow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #1f2b3a;
+}
+
+/* Glowing animation */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 15px #0ef, 0 0 30px rgba(0, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px #b400ff, 0 0 50px rgba(180, 0, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 15px #0ef, 0 0 30px rgba(0, 255, 255, 0.4);
+    }
+}
+
+.intro-text .greeting {
+    color: #00ffaa;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.intro-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.roles {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #cfd9e0;
+}
+
+.desc {
+    margin: 1rem 0 2rem 0;
+    color: #cfd9e0;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #00ffaa;
+    color: #00ffaa;
+    background: transparent;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background: #00ffaa;
+    color: #1f2b3a;
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: #0e1c2f;
+    text-align: center;
+    padding: 1rem;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    position: relative; /* Ensure the footer has a positioning context for the button */
+}
+
+/* Style the link as a button */
+.admin-btn {
+    position: absolute;
+    bottom: 18px; /* shifted 2 cm upward from original 10px */
+    left: 20px;
+    display: inline-block;
+    background-color:  #223e66;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 12px;
+    width: auto;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 1000;
+}
+
+
+/* Add hover effect for the button */
+.admin-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Style the <li> tag if necessary */
+footer li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+/* Style the paragraph */
+footer p {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #0e1c2f;
+        flex-direction: column;
+        width: 110px;
+        line-height: 0.5;
+        border-radius: 5px;
+        padding: 1rem;
+        border: 1px solid #0ef;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .intro-text h1 {
+        font-size: 2rem;
+    }
+}

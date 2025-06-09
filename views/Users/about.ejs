@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Yam Kumar Rai</title>
+  <link rel="stylesheet" href="/css/about.css"/>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">YK</div>
+      <nav id="navbar">
+        <ul class="nav-links">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about" class="active">About</a></li>
+          <li><a href="/skill">Skills</a></li>
+          <li><a href="/project">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about">
+      <h2>About Me</h2>
+
+      <div class="about-content">
+        <!-- Profile image first for mobile-first layout -->
+        <div class="about-image">
+          <div class="image-glow">
+            <img src="Assets/yamm.jpg" alt="Profile Picture" class="glow-img" />
+          </div>
+        </div>
+
+        <!-- About text -->
+        <div class="about-text">
+          <p>Hello! I'm Yam Kumar Rai, a passionate developer and designer with a keen interest in creating beautiful, functional digital experiences. With over 5 years of experience in web development and UI/UX design, I've had the privilege of working on diverse projects that have shaped my expertise.</p>
+          <p>Currently, I'm focused on building accessible, human-centered products at Sherubtse College while pursuing my degree in Data Science and Analytics. My approach combines technical expertise with creative problem-solving to deliver impactful solutions.</p>
+          <p>Here are a few technologies I've been working with recently:</p>
+          <ul class="tech-list">
+            <li>Frontend Development</li>
+            <li>ReactJS</li>
+            <li>Python</li>
+            <li>UI/UX Design</li>
+            <li>NodeJS</li>
+            <li>Data Analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience">
+        <h3>Experience</h3>
+        <div class="job">
+           </div>
+        <div class="job">
+          <h4>UI/UX Designer</h4>
+          <p class="company">Design Studio • 2018 – 2020</p>
+          <p>Created user-centered designs for clients across various industries. Conducted user research and usability testing.</p>
+        </div>
+      </div>
+
+      <div class="education">
+        <h3>Education</h3>
+        <div class="school">
+          <h4>BSc in Data Science and Data Analytics</h4>
+          <p class="college">Sherubtse College • 2023 – 2027</p>
+          <p>Focused on machine learning, statistical analysis, and data visualization. Dean’s List recipient.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Designed & Built by Yam Kumar Rai</p>
+  </footer>
+
+  <script>const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+     toggle.addEventListener("click", () => {
+     navLinks.classList.toggle("active");
+    });
+</script>
+</body>
+</html>

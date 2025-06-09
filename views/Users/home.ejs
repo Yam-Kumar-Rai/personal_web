@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yam Kumar Rai</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">MyPortfolio</div>
+      <a href="/login" class="admin-btn">A</a>
+      <nav id="navbar">
+        <ul class="nav-links">
+          <li><a href="/home" class="active">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/skill">Skills</a></li>
+          <li><a href="/project">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="image-glow">
+        <img src="Assets/yamm.jpg" alt="Profile Picture" class="glow-img" />
+      </div>
+      <div class="intro-text">
+        <h1>Hi, I'm Yam Kumar Rai</h1>
+        <p class="roles">Frontend Developer, Web Developer, UI/UX Designer</p>
+        <p class="desc">
+          Student of Sherubtse College, specializing in Data Science<br/>
+          and Data Analytics, and UI/UX Designer.
+        </p>
+        <a href="#" class="btn">Download CV</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Updated Footer -->
+  <footer>
+    <p>Designed & Built by Yam Kumar Rai</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+  
+</body>
+</html>

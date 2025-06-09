@@ -1,0 +1,272 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #E2E8F0;
+    line-height: 1.6;
+}
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #001F3F;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-profile {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.upload-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #001F3F;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.upload-overlay i {
+    color: white;
+}
+
+.admin-profile h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.admin-profile p {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav a i {
+    width: 20px;
+}
+
+.logout-btn {
+    margin-top: auto;
+    color: #ff4d4d !important;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Container */
+.add-project-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+/* Form Header */
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #64748B;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #E2E8F0;
+}
+
+.form-header h1 {
+    font-size: 1.8rem;
+    color: #001F3F;
+}
+
+/* Form Styles */
+.project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 600px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 600px;
+}
+
+label {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="url"],
+textarea {
+    background-color: #f8f9fa;
+    border: 1px solid #2D3748;
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: #E2E8F0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Image Upload Area */
+.image-upload-area {
+    border: 2px dashed #2D3748;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.image-upload-area:hover {
+    border-color: #3B82F6;
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.upload-placeholder i {
+    font-size: 2rem;
+    color: #3B82F6;
+}
+
+.upload-placeholder p {
+    color: #001F3F;
+    font-size: 1rem;
+}
+
+.upload-placeholder span {
+    color: #001F3F;
+    font-size: 0.9rem;
+}
+
+/* Add Project Button */
+.add-project-btn {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.add-project-btn:hover {
+    background-color: #059669;
+}
+
+/* Drag and Drop Styles */
+.image-upload-area.drag-over {
+    border-color: #10B981;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add-project-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .form-header h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Collection</title>
+  <link rel="stylesheet" href="/css/project.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">YK</div>
+    <nav id="navbar">
+      <ul class="nav-links">
+        <li><a href="/home" >Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/skill">Skills</a></li>
+        <li><a href="/project" class="active">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="project-section">
+      <div class="section-header">
+        <div>
+          <h2>Project Collection</h2>
+          <p>Upload and showcase your projects with detailed information</p>
+        </div>
+      </div>
+
+      <div class="project-tabs">
+        <button class="tab active">All Projects</button>
+      </div>
+
+      <% if (projects && projects.length > 0) { %>
+  <div class="project-grid">
+    <% projects.forEach(project => { %>
+      <div class="project-card" data-category="all">
+        <% if (project.image) { %>
+          <img src="<%= project.image %>" alt="Project Image" class="project-image">
+        <% } else { %>
+          <img src="/images/default-placeholder.png" alt="No Image Available" class="project-image">
+        <% } %>
+        <h3><%= project.title %></h3>
+        <p><%= project.description %></p>
+        <% if (project.link) { %>
+          <a href="<%= project.link %>" target="_blank">View on GitHub</a>
+        <% } else { %>
+          <p><em>No link provided</em></p>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+<% } else { %>
+  <p>No projects available</p>
+<% } %>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    Designed & Built by Yam Kumar Rai
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        filterButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const category = button.dataset.category;
+
+            projectCards.forEach(card => {
+              card.style.display = (category === "all" || card.dataset.category === category)
+                ? "block"
+                : "none";
+            });
+          });
+        });
+      });
+    document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+});
+
+    </script>
+  </footer>
+</body>
+</html>

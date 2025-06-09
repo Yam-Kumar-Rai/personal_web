@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills & Expertise</title>
+  <link rel="stylesheet" href="/css/skill.css" />
+</head>
+<body>
+ <header class="navbar">
+  <div class="logo">YK</div>
+  <div class="nav-container">
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/skill" class="active">Skills</a></li>
+      <li><a href="/project">Projects</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+  <main class="container">
+    <section class="skills-section">
+      <h2>Skills & Expertise</h2>
+      <div class="tabs">
+        <button class="tab-button active" onclick="showTab('technical')">Technical Skills</button>
+        <button class="tab-button" onclick="showTab('soft')">Soft Skills</button>
+      </div>
+
+      <div id="technical" class="tab-content active">
+        <div class="grid">
+          <div class="card highlighted">
+            <div class="card-header">
+              <h3>Frontend Development</h3>
+              <span>90%</span>
+            </div>
+            <ul>
+              <li>React.js</li>
+              <li>JavaScript/ES6+</li>
+              <li>Responsive Design</li>
+              <li>Vue.js</li>
+              <li>HTML5/CSS3</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Backend Development</h3>
+              <span>85%</span>
+            </div>
+            <ul>
+              <li>Node.js</li>
+              <li>RESTful APIs</li>
+              <li>Server Architecture</li>
+              <li>Python</li>
+              <li>Database Design</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>UI/UX Design</h3>
+              <span>88%</span>
+            </div>
+            <ul>
+              <li>Figma</li>
+              <li>User Research</li>
+              <li>Prototyping</li>
+              <li>Adobe XD</li>
+              <li>Wireframing</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Data Science</h3>
+              <span>82%</span>
+            </div>
+            <ul>
+              <li>Machine Learning</li>
+              <li>Statistical Modeling</li>
+              <li>Data Visualization</li>
+              <li>Data Analysis</li>
+              <li>Python Libraries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="soft" class="tab-content">
+        <p>Soft Skills content goes here...</p>
+      </div>
+
+      <div class="certifications">
+        <h3>Certifications & Achievements</h3>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <strong>AWS Certified Developer</strong>
+            <p>Amazon Web Services – 2023</p>
+          </div>
+          <div class="cert-card">
+            <strong>Google UX Design</strong>
+            <p>Google – 2022</p>
+          </div>
+          <div class="cert-card">
+            <strong>Data Science Professional</strong>
+            <p>IBM – 2021</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Designed & Built by Yam Kumar Rai
+  </footer>
+
+  <script>
+    function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach((el) => {
+    el.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-button').forEach((btn) => {
+    btn.classList.remove('active');
+  });
+
+  document.getElementById(tab).classList.add('active');
+  document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`).classList.add('active');
+}
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  });
+  </script>
+</body>
+</html>
