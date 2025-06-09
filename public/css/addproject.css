@@ -140,7 +140,7 @@ body {
 .back-btn {
     background: none;
     border: none;
-    color: #64748B;
+    color: #0a0a0a;
     font-size: 1.2rem;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -171,7 +171,7 @@ body {
 }
 
 label {
-    color: #94A3B8;
+    color: #080808;
     font-size: 0.9rem;
 }
 
@@ -182,7 +182,7 @@ textarea {
     border: 1px solid #2D3748;
     border-radius: 6px;
     padding: 0.75rem;
-    color: #E2E8F0;
+    color: #0f0f0f;
     font-size: 1rem;
     transition: border-color 0.3s ease;
 }
