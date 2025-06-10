@@ -20,8 +20,9 @@ app.use(session({
   cookie: { secure: false } // Set to true only for HTTPS production
 }));
 
-// Static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+app.use('/assets', express.static(path.join(__dirname, 'public/assets'))); // Optional if using /assets
 
 // View engine (EJS)
 app.set('view engine', 'ejs');
