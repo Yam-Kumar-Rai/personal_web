@@ -22,7 +22,6 @@ app.use(session({
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // View engine (EJS)
 app.set('view engine', 'ejs');
