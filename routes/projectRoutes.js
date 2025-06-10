@@ -54,54 +54,39 @@ router.post('/addproject', ensureAuthenticated, upload.single('projectImage'), a
 
 // POST /admin/editproject/:id
 router.post('/editproject/:id', ensureAuthenticated, upload.single('projectImage'), async (req, res) => {
+  const projectId = req.params.id;
+  const { projectTitle, projectDescription, Link, projectDate } = req.body;
+  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+  const formattedDate = formatDate(projectDate);
+  if (!formattedDate) {
+    return res.status(400).send('Invalid date format');
+  }
+
+  let sql, params;
+
+  if (imagePath) {
+    sql = `
+      UPDATE projects
+      SET title = $1, description = $2, link = $3, image = $4, project_date = $5
+      WHERE id = $6
+    `;
+    params = [projectTitle, projectDescription, Link, imagePath, formattedDate, projectId];
+  } else {
+    sql = `
+      UPDATE projects
+      SET title = $1, description = $2, link = $3, project_date = $4
+      WHERE id = $5
+    `;
+    params = [projectTitle, projectDescription, Link, formattedDate, projectId];
+  }
+
   try {
-    const projectId = req.params.id;
-    const { projectTitle, projectDescription, Link, projectDate } = req.body;
-    
-    // Ensure upload directory exists
-    const uploadDir = path.join(__dirname, '../public/uploads');
-    fs.mkdirSync(uploadDir, { recursive: true });
-    
-    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-
-    const formattedDate = formatDate(projectDate);
-    if (!formattedDate) {
-      console.error('Invalid date format:', projectDate);
-      return res.status(400).send('Invalid date format');
-    }
-
-    let sql, params;
-
-    if (imagePath) {
-      sql = `
-        UPDATE projects
-        SET title = $1, description = $2, link = $3, image = $4, project_date = $5
-        WHERE id = $6
-        RETURNING *
-      `;
-      params = [projectTitle, projectDescription, Link, imagePath, formattedDate, projectId];
-    } else {
-      sql = `
-        UPDATE projects
-        SET title = $1, description = $2, link = $3, project_date = $4
-        WHERE id = $5
-        RETURNING *
-      `;
-      params = [projectTitle, projectDescription, Link, formattedDate, projectId];
-    }
-
-    const result = await pool.query(sql, params);
-    
-    if (result.rows.length === 0) {
-      console.error('Project not found:', projectId);
-      return res.status(404).send('Project not found');
-    }
-
+    await pool.query(sql, params);
     res.redirect('/Admin/dashboard');
   } catch (err) {
-    console.error('Error updating project:', err.message);
-    console.error('Stack trace:', err.stack);
-    res.status(500).send(`Error updating project: ${err.message}`);
+    console.error('Error updating project:', err);
+    res.status(500).send('Error updating project');
   }
 });
 

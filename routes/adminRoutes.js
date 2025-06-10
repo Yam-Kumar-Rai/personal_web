@@ -26,7 +26,7 @@ router.get('/edit/:id', ensureAuthenticated, ensureAdmin, async (req, res) => {
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [projectId]);
     const project = result.rows[0];
     if (!project) return res.status(404).send('Project not found');
-    res.render('Admin/editProject', { project });
+    res.render('Admin/editproject', { project });
   } catch (err) {
     console.error('Error loading edit page:', err);
     res.status(500).send('Internal Server Error');
