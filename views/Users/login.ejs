@@ -93,7 +93,7 @@
           body: JSON.stringify({ email, password }),
         })
           .then(res => {
-            if (!res.ok) throw new Error('Network response was not ok');
+            if (!res.ok) throw new Error('Invalid Credential');
             return res.json();
           })
           .then(data => {

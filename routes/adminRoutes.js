@@ -1,13 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../config/db');  // Correct import without destructuring
+const pool = require('../config/db');  // Correct import
 const { ensureAuthenticated, ensureAdmin } = require('../middleware/authMiddleware');
 
-// Admin dashboard
+// Admin dashboard: fetch projects & contact messages
 router.get('/dashboard', ensureAuthenticated, ensureAdmin, async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM projects ORDER BY project_date DESC');
-    res.render('Admin/dashboard', { projects: result.rows });
+    const projectResult = await pool.query('SELECT * FROM projects ORDER BY project_date DESC');
+    const contactResult = await pool.query('SELECT * FROM contacts ORDER BY created_at DESC');
+
+    const projects = projectResult.rows;
+    const contacts = contactResult.rows;
+
+    res.render('Admin/dashboard', { projects, contacts });
   } catch (err) {
     console.error('Error loading dashboard:', err);
     res.status(500).send('Internal Server Error');
@@ -61,4 +66,26 @@ router.post('/delete/:id', ensureAuthenticated, ensureAdmin, async (req, res) =>
   }
 });
 
+// Mark contact message as read
+router.post('/contact/:id/read', ensureAuthenticated, ensureAdmin, async (req, res) => {
+  try {
+    const contactId = req.params.id;
+    await pool.query('UPDATE contacts SET is_read = TRUE WHERE id = $1', [contactId]);
+    res.redirect('/Admin/dashboard');
+  } catch (err) {
+    console.error('Error updating contact status:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+//Delete contact
+router.post('/contact/:id/delete', ensureAuthenticated, ensureAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query('DELETE FROM contacts WHERE id = $1', [id]);
+    res.redirect('/Admin/dashboard');
+  } catch (err) {
+    console.error('Error deleting contact message:', err);
+    res.status(500).send('Server error');
+  }
+});
 module.exports = router;

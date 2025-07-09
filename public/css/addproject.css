@@ -259,14 +259,16 @@ textarea {
     background-color: rgba(16, 185, 129, 0.05);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .add-project-container {
-        margin: 1rem;
-        padding: 1rem;
+@media screen and (max-width: 768px) {
+    .projects-table {
+        overflow-x: auto;
     }
 
-    .form-header h1 {
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .header-title h1 {
         font-size: 1.5rem;
     }
 }

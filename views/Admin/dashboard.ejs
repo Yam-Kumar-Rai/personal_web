@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   <link rel="stylesheet" href="/css/dashboard.css"/>
   <style>
@@ -27,6 +27,40 @@
     }
     .delete-btn {
       background-color: #dc3545;
+    }
+
+    /* Contact Messages */
+    .contact-notifications {
+      margin-top: 40px;
+    }
+    .contact-notifications .message-card {
+      border: 1px solid #ccc;
+      border-left: 5px solid #007bff;
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+    .contact-notifications .unread {
+      background-color: #fff3cd;
+      border-left-color: #ffc107;
+    }
+    .contact-notifications .read {
+      opacity: 0.7;
+    }
+    .contact-notifications .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .mark-read-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -54,17 +88,13 @@
     <main class="main-content">
       <header class="dashboard-header">
         <div class="header-title">
-          <h1>Portfolio Admin</h1>
-          <div class="online-status">
-            <span class="status-dot"></span> Online
-          </div>
+          <h1>Admin</h1>
         </div>
         <div class="header-actions">
           <button class="notifications-btn">
             <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span>
+            <span class="notification-badge"></span>
           </button>
-          <button class="settings-btn"><i class="fas fa-cog"></i></button>
         </div>
       </header>
 
@@ -92,6 +122,7 @@
         </div>
       </div>
 
+      <!-- Recent Projects Section -->
       <section class="recent-projects">
         <div class="section-header">
           <h2>Recent Projects</h2>
@@ -136,11 +167,49 @@
           </table>
         </div>
       </section>
+
+      <!-- Contact Message Notifications Section -->
+      <section class="contact-notifications">
+        <div class="section-header">
+          <h2>📬 Contact Messages</h2>
+        </div>
+
+        <% if (contacts.length === 0) { %>
+          <p>No messages received yet.</p>
+        <% } else { %>
+          <div class="contact-messages">
+            <% contacts.forEach(contact => { %>
+              <div class="message-card <%= contact.is_read ? 'read' : 'unread' %>">
+                <div class="message-header">
+                  <strong><%= contact.name %></strong>
+                  <span><%= new Date(contact.created_at).toLocaleString() %></span>
+                </div>
+                <p><strong>Email:</strong> <%= contact.email %></p>
+                <p><strong>Subject:</strong> <%= contact.subject || 'N/A' %></p>
+                <p><strong>Message:</strong> <%= contact.message %></p>
+
+                <div style="margin-top: 10px;">
+                  <% if (!contact.is_read) { %>
+                    <form action="/admin/contact/<%= contact.id %>/read" method="POST" style="display:inline;">
+                      <button type="submit" class="mark-read-btn">Mark as Read</button>
+                    </form>
+                  <% } else { %>
+                    <span style="color: green;">✔️ Read</span>
+                  <% } %>
+
+                  <form action="/admin/contact/<%= contact.id %>/delete" method="POST" style="display:inline; margin-left: 10px;">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this message?')">Delete</button>
+                  </form>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
     </main>
   </div>
 
   <script>
-    // Profile Image Upload
     const imageUpload = document.getElementById('imageUpload');
     const profileImage = document.getElementById('profileImage');
     imageUpload.addEventListener('change', function (e) {
@@ -154,7 +223,6 @@
       }
     });
 
-    // Sidebar Navigation
     const navLinks = document.querySelectorAll('.sidebar-nav a');
     navLinks.forEach(link => {
       link.addEventListener('click', function () {
@@ -163,21 +231,11 @@
       });
     });
 
-    // Notifications
-    const notificationsBtn = document.querySelector('.notifications-btn');
-    notificationsBtn.addEventListener('click', function () {
+    document.querySelector('.notifications-btn').addEventListener('click', () => {
       alert('Notifications feature coming soon!');
     });
 
-    // Settings
-    const settingsBtn = document.querySelector('.settings-btn');
-    settingsBtn.addEventListener('click', function () {
-      alert('Settings feature coming soon!');
-    });
-
-    // Logout
-    const logoutBtn = document.querySelector('.logout-btn');
-    logoutBtn.addEventListener('click', function (e) {
+    document.querySelector('.logout-btn').addEventListener('click', function (e) {
       e.preventDefault();
       if (confirm('Are you sure you want to logout?')) {
         window.location.href = '/logout';
