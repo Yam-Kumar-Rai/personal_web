@@ -34,12 +34,17 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => res.redirect('/home'));
 
-// Main pages
 app.get('/home', (req, res) => res.render('Users/home'));
 app.get('/about', (req, res) => res.render('Users/about'));
 app.get('/skill', (req, res) => res.render('Users/skill'));
 app.get('/project', (req, res) => res.redirect('/Users/project')); // Use Users/projects from userRoutes
-app.get('/contact', (req, res) => res.render('Users/contact'));
+
+// UPDATED contact GET route with success param parsing & passing to EJS
+app.get('/contact', (req, res) => {
+  const success = req.query.success === '1' || req.query.success === 'true';
+  res.render('Users/contact', { success });
+});
+
 app.get('/login', (req, res) => res.render('Users/login', { message: null }));
 
 // Logout clears session
@@ -69,7 +74,8 @@ app.post('/contact', async (req, res) => {
 
     // Optionally add: Email Notification via Nodemailer here
 
-    res.redirect('/contact?success=1'); // redirect with success flag
+    // Redirect with success flag in query string
+    res.redirect('/contact?success=1');
   } catch (err) {
     console.error('❌ Contact form error:', err.message);
     res.status(500).send('Internal server error. Please try again later.');

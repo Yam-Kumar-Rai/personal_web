@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact</title>
   <link rel="stylesheet" href="/css/contact.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <!-- NAVIGATION BAR -->
@@ -92,16 +93,29 @@
     });
 
     document.querySelector('.menu-toggle').addEventListener('click', function() {
-  document.querySelector('.nav-links').classList.toggle('active');
-});
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
 
-// Close menu when clicking outside
-document.addEventListener('click', function(e) {
-  const menu = document.querySelector('.nav-links');
-  const toggle = document.querySelector('.menu-toggle');
-  if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-    menu.classList.remove('active');
-  }
-});  </script>
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.querySelector('.nav-links');
+      const toggle = document.querySelector('.menu-toggle');
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+<% if (success) { %>
+  <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Message Sent!',
+      text: 'Your message has been submitted successfully.',
+      confirmButtonColor: '#3085d6'
+    });
+  </script>
+<% } %>
+
+
 </body>
 </html>
